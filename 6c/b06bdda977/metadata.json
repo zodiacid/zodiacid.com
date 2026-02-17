@@ -1,0 +1,35 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "6cb06bdda977",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "zodiacid/about.html",
+    "zodiacid/faq.html",
+    "zodiacid/index.html",
+    "zodiacid/pricing.html",
+    "zodiacid/product-natal.html",
+    "zodiacid/product-parenting.html",
+    "zodiacid/product-redflag.html",
+    "zodiacid/product-synastry.html",
+    "zodiacid/refund.html",
+    "zodiacid/terms.html"
+  ],
+  "sessions": [
+    {
+      "metadata": "/6c/b06bdda977/0/metadata.json",
+      "transcript": "/6c/b06bdda977/0/full.jsonl",
+      "context": "/6c/b06bdda977/0/context.md",
+      "content_hash": "/6c/b06bdda977/0/content_hash.txt",
+      "prompt": "/6c/b06bdda977/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 8450,
+    "cache_creation_tokens": 343948,
+    "cache_read_tokens": 19962852,
+    "output_tokens": 22781,
+    "api_call_count": 188
+  }
+}
