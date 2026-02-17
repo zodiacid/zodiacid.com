@@ -1,0 +1,39 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "f601cfde63b2",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 9,
+  "files_touched": [
+    "zodiacid/about.html",
+    "zodiacid/css/styles.css",
+    "zodiacid/faq.html",
+    "zodiacid/index.html",
+    "zodiacid/js/main.js",
+    "zodiacid/pricing.html",
+    "zodiacid/product-natal.html",
+    "zodiacid/product-parenting.html",
+    "zodiacid/product-synastry.html",
+    "zodiacid/refund.html",
+    "zodiacid/sample-natal-beyonce.html",
+    "zodiacid/sample-synastry-lennon-ono.html",
+    "zodiacid/sample.html",
+    "zodiacid/terms.html"
+  ],
+  "sessions": [
+    {
+      "metadata": "/f6/01cfde63b2/0/metadata.json",
+      "transcript": "/f6/01cfde63b2/0/full.jsonl",
+      "context": "/f6/01cfde63b2/0/context.md",
+      "content_hash": "/f6/01cfde63b2/0/content_hash.txt",
+      "prompt": "/f6/01cfde63b2/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 38572,
+    "cache_creation_tokens": 638550,
+    "cache_read_tokens": 15903449,
+    "output_tokens": 42457,
+    "api_call_count": 142
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "f601cfde63b2",
+  "session_id": "5432f61b-cf71-4d65-9be9-9592f95604cf",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-17T07:26:37.679467977Z",
+  "branch": "main",
+  "checkpoints_count": 9,
+  "files_touched": [
+    "zodiacid/about.html",
+    "zodiacid/css/styles.css",
+    "zodiacid/faq.html",
+    "zodiacid/index.html",
+    "zodiacid/js/main.js",
+    "zodiacid/pricing.html",
+    "zodiacid/product-natal.html",
+    "zodiacid/product-parenting.html",
+    "zodiacid/product-synastry.html",
+    "zodiacid/refund.html",
+    "zodiacid/sample-natal-beyonce.html",
+    "zodiacid/sample-synastry-lennon-ono.html",
+    "zodiacid/sample.html",
+    "zodiacid/terms.html"
+  ],
+  "agent": "Claude Code",
+  "token_usage": {
+    "input_tokens": 38572,
+    "cache_creation_tokens": 638550,
+    "cache_read_tokens": 15903449,
+    "output_tokens": 42457,
+    "api_call_count": 142
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-17T07:26:36.24405303Z",
+    "agent_lines": 3605,
+    "human_added": 1866,
+    "human_modified": 1757,
+    "human_removed": 0,
+    "total_committed": 7186,
+    "agent_percentage": 50.16699137211245
+  }
+}
