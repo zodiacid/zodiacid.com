@@ -1,0 +1,29 @@
+Remove "Built by Vadik Iljin" everywhere. In the founder section change "Founded by Vadik Iljin in Tallinn, Estonia." to "Founded by Sergei Tkatšenko in Tallinn, Estonia." change "Background in data engineering, statistical analysis, and pattern recognition." to "Team's background in data engineering, statistical analysis and pattern recognition." comit push
+
+---
+
+what the fuck, where you push, why I dont see workers triggered, investigate
+
+---
+
+do it and memorize to mever make that mistake again, ever
+
+---
+
+I allow you loosen rules
+
+---
+
+allow the git push
+
+---
+
+change rules that deny
+
+---
+
+y
+
+---
+
+change settings to alwys allow it

@@ -1,0 +1,46 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "74bd3b95f0ba",
+  "session_id": "2e1eedd2-1658-4c22-801b-2bc10bdfb228",
+  "strategy": "manual-commit",
+  "created_at": "2026-03-02T09:56:23.013212832Z",
+  "branch": "main",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "zodiacid/404.html",
+    "zodiacid/about.html",
+    "zodiacid/contact.html",
+    "zodiacid/faq.html",
+    "zodiacid/index.html",
+    "zodiacid/pricing.html",
+    "zodiacid/privacy.html",
+    "zodiacid/product-natal.html",
+    "zodiacid/product-parenting.html",
+    "zodiacid/product-redflag.html",
+    "zodiacid/product-synastry.html",
+    "zodiacid/refund.html",
+    "zodiacid/sample-natal-beyonce.html",
+    "zodiacid/sample-parenting-prince-george.html",
+    "zodiacid/sample-redflag-pitt-jolie.html",
+    "zodiacid/sample-synastry-lennon-ono.html",
+    "zodiacid/sample.html",
+    "zodiacid/terms.html"
+  ],
+  "agent": "Claude Code",
+  "token_usage": {
+    "input_tokens": 59,
+    "cache_creation_tokens": 111399,
+    "cache_read_tokens": 2022159,
+    "output_tokens": 803,
+    "api_call_count": 44
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-03-02T09:56:22.959143257Z",
+    "agent_lines": 769,
+    "human_added": 19136,
+    "human_modified": 19,
+    "human_removed": 0,
+    "total_committed": 19924,
+    "agent_percentage": 3.8596667335876327
+  }
+}
