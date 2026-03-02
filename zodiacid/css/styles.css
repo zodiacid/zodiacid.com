@@ -253,6 +253,30 @@ p {
   color: var(--gold);
 }
 
+/* ========== Language Switcher ========== */
+.lang-switcher {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  font-size: 0.8rem;
+  margin-left: 1rem;
+}
+
+.lang-switcher a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.lang-switcher a:hover {
+  color: var(--gold);
+}
+
+.lang-switcher .active {
+  color: var(--gold);
+  font-weight: 600;
+}
+
 .nav-toggle {
   display: none;
   background: none;
@@ -1075,6 +1099,31 @@ p {
   display: block;
 }
 
+.celeb-tabs {
+  border-bottom: none;
+  margin-bottom: 1.5rem;
+  gap: 0.5rem;
+}
+
+.celeb-tabs .tab-btn {
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.celeb-tabs .tab-btn.active {
+  background: var(--gold);
+  color: var(--bg-navy);
+  border-color: var(--gold);
+}
+
+.celeb-tabs .tab-btn:hover:not(.active) {
+  border-color: var(--gold);
+  color: var(--text);
+}
+
 /* ========== Report Header (Sample Pages) ========== */
 .report-header {
   text-align: center;
@@ -1614,6 +1663,14 @@ details summary:focus-visible {
 }
 
 @media (max-width: 768px) {
+  /* Language Switcher */
+  .lang-switcher {
+    margin-left: 0;
+    margin-top: 0.5rem;
+    justify-content: center;
+    order: 10;
+  }
+
   /* Nav */
   .nav-links {
     display: none;

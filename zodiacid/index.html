@@ -11,15 +11,21 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <title>ZodiacID — Natal Chart &amp; Zodiac Compatibility Reports | Birth Chart Reading</title>
   <meta name="description" content="In-depth natal chart reports and zodiac compatibility analysis based on your exact birth chart. 20 celestial bodies, 50+ aspects, 40+ pages. Personality traits, love compatibility, and life patterns.">
   <meta property="og:title" content="ZodiacID — Natal Chart &amp; Zodiac Compatibility Reports">
   <meta property="og:description" content="In-depth natal chart reports and zodiac compatibility analysis based on your exact birth chart. Personality traits, love compatibility, and life patterns.">
-  <meta property="og:image" content="images/og-image.png">
+  <meta property="og:image" content="https://zodiacid.com/images/og-image.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zodiacid.com/">
   <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:site_name" content="ZodiacID">
+  <meta property="og:locale" content="en_US">
   <link rel="canonical" href="https://zodiacid.com/">
+  <link rel="alternate" hreflang="en" href="https://zodiacid.com/">
+  <link rel="alternate" hreflang="ru" href="https://zodiacid.com/ru/">
+  <link rel="alternate" hreflang="et" href="https://zodiacid.com/et/">
   <link rel="alternate" hreflang="x-default" href="https://zodiacid.com/">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -46,6 +52,11 @@
         </ul>
         <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
       </nav>
+    <nav class="lang-switcher" aria-label="Language">
+      <span class="active" aria-current="true">English</span>
+      <a href="/ru/" hreflang="ru" lang="ru">Русский</a>
+      <a href="/et/" hreflang="et" lang="et">Eesti</a>
+    </nav>
     </div>
   </header>
   <nav class="breadcrumb" aria-label="Breadcrumb"><div class="container"></div></nav>
@@ -440,17 +451,23 @@
     "contactPoint": {
       "@type": "ContactPoint",
       "email": "contact@zodiacid.com",
-      "contactType": "customer service"
+      "contactType": "customer service",
+      "availableLanguage": ["en", "ru", "et"]
     },
+    "logo": "https://zodiacid.com/images/og-image.png",
+    "email": "contact@zodiacid.com",
     "founder": {
       "@type": "Person",
-      "name": "Vadik Iljin"
+      "name": "Sergei Tkatshenko"
     },
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Tallinn",
       "addressCountry": "EE"
     },
+    "sameAs": [
+      "https://vadikiljin.substack.com"
+    ],
     "knowsAbout": ["Natal Chart", "Birth Chart", "Zodiac Signs", "Zodiac Compatibility", "Synastry", "Astrology"]
   }
   </script>
@@ -460,6 +477,7 @@
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "inLanguage": "en",
     "mainEntity": [
       {
         "@type": "Question",

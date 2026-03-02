@@ -245,16 +245,22 @@
   function initTabs() {
     document.querySelectorAll('.tabs').forEach(function (tabContainer) {
       var buttons = tabContainer.querySelectorAll('.tab-btn');
-      var panels = tabContainer.parentElement.querySelectorAll('.tab-panel');
+      var panels = Array.from(tabContainer.parentElement.children).filter(function (el) {
+        return el.classList.contains('tab-panel');
+      });
 
       buttons.forEach(function (btn) {
         btn.addEventListener('click', function () {
           var target = btn.dataset.tab;
 
-          buttons.forEach(function (b) { b.classList.remove('active'); });
+          buttons.forEach(function (b) {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
           panels.forEach(function (p) { p.classList.remove('active'); });
 
           btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
           var panel = document.getElementById(target);
           if (panel) panel.classList.add('active');
 
