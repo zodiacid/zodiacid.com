@@ -3,13 +3,16 @@
   "checkpoint_id": "74bd3b95f0ba",
   "strategy": "manual-commit",
   "branch": "main",
-  "checkpoints_count": 7,
+  "checkpoints_count": 8,
   "files_touched": [
     "zodiacid/404.html",
     "zodiacid/_headers",
     "zodiacid/about.html",
     "zodiacid/contact.html",
     "zodiacid/css/styles.css",
+    "zodiacid/et/sample-natal-meri.html",
+    "zodiacid/et/sample-natal-ots.html",
+    "zodiacid/et/sample-natal-part.html",
     "zodiacid/faq.html",
     "zodiacid/index.html",
     "zodiacid/pricing.html",
@@ -22,6 +25,9 @@
     "zodiacid/robots.txt",
     "zodiacid/ru/index.html",
     "zodiacid/ru/product-natal.html",
+    "zodiacid/ru/sample-natal-pugacheva.html",
+    "zodiacid/ru/sample-natal-tsoi.html",
+    "zodiacid/ru/sample-natal-vysotsky.html",
     "zodiacid/sample-natal-beyonce.html",
     "zodiacid/sample-parenting-prince-george.html",
     "zodiacid/sample-redflag-pitt-jolie.html",
@@ -73,13 +79,20 @@
       "context": "/74/bd3b95f0ba/5/context.md",
       "content_hash": "/74/bd3b95f0ba/5/content_hash.txt",
       "prompt": "/74/bd3b95f0ba/5/prompt.txt"
+    },
+    {
+      "metadata": "/74/bd3b95f0ba/6/metadata.json",
+      "transcript": "/74/bd3b95f0ba/6/full.jsonl",
+      "context": "/74/bd3b95f0ba/6/context.md",
+      "content_hash": "/74/bd3b95f0ba/6/content_hash.txt",
+      "prompt": "/74/bd3b95f0ba/6/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 1022,
-    "cache_creation_tokens": 859242,
-    "cache_read_tokens": 25729205,
-    "output_tokens": 103728,
-    "api_call_count": 305
+    "input_tokens": 1061,
+    "cache_creation_tokens": 962639,
+    "cache_read_tokens": 28489216,
+    "output_tokens": 125835,
+    "api_call_count": 340
   }
 }
