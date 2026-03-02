@@ -270,6 +270,102 @@
     });
   }
 
+  // ========== Language Switcher ==========
+  function initLangSwitcher() {
+    var container = document.querySelector('.lang-switcher');
+    if (!container) return;
+
+    var path = window.location.pathname;
+    var currentLang = 'en';
+    var pagePath = path;
+
+    if (/^\/ru(\/|$)/.test(path)) {
+      currentLang = 'ru';
+      pagePath = path.replace(/^\/ru/, '') || '/';
+    } else if (/^\/et(\/|$)/.test(path)) {
+      currentLang = 'et';
+      pagePath = path.replace(/^\/et/, '') || '/';
+    }
+
+    // Normalize: strip .html and trailing slashes
+    pagePath = pagePath.replace(/\.html$/, '').replace(/\/+$/, '') || '/';
+
+    // Celebrity samples are language-specific → fall back to /sample/
+    var isCelebSample = /\/sample-(natal|synastry|redflag|parenting)-.+/.test(pagePath);
+
+    var labels = { en: 'EN', ru: 'RU', et: 'ET' };
+    var prefixes = { en: '', ru: '/ru', et: '/et' };
+
+    function buildUrl(lang) {
+      var prefix = prefixes[lang];
+      if (isCelebSample) return prefix + '/sample/';
+      if (pagePath === '/') return prefix + '/';
+      return prefix + pagePath + '/';
+    }
+
+    // Build button
+    var btn = document.createElement('button');
+    btn.className = 'lang-btn';
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-haspopup', 'listbox');
+    btn.innerHTML = labels[currentLang] +
+      ' <svg class="lang-arrow" width="10" height="6" viewBox="0 0 10 6">' +
+      '<path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>';
+
+    // Build menu
+    var menu = document.createElement('div');
+    menu.className = 'lang-menu';
+
+    ['en', 'ru', 'et'].forEach(function (lang) {
+      var a = document.createElement('a');
+      a.href = buildUrl(lang);
+      a.textContent = labels[lang];
+      a.setAttribute('hreflang', lang);
+      if (lang === currentLang) {
+        a.classList.add('active');
+        a.setAttribute('aria-current', 'true');
+      }
+      menu.appendChild(a);
+    });
+
+    container.appendChild(btn);
+    container.appendChild(menu);
+
+    // Toggle
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+      // Close mobile nav if open
+      var navLinks = document.querySelector('.nav-links');
+      var navToggle = document.querySelector('.nav-toggle');
+      if (navLinks && navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        if (navToggle) {
+          navToggle.setAttribute('aria-expanded', 'false');
+          navToggle.innerHTML = '&#9776;';
+        }
+      }
+    });
+
+    // Close on outside click
+    document.addEventListener('click', function (e) {
+      if (!container.contains(e.target)) {
+        menu.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close lang menu when opening mobile nav
+    var navToggle = document.querySelector('.nav-toggle');
+    if (navToggle) {
+      navToggle.addEventListener('click', function () {
+        menu.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+  }
+
   // ========== Initialize ==========
   document.addEventListener('DOMContentLoaded', function () {
     initCookieConsent();
@@ -277,5 +373,6 @@
     initSmoothScroll();
     initMobileNav();
     initTabs();
+    initLangSwitcher();
   });
 })();
