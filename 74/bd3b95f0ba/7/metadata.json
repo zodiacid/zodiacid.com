@@ -1,0 +1,38 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "74bd3b95f0ba",
+  "session_id": "3dab96a2-f788-40a3-91cb-4fdb685c4599",
+  "strategy": "manual-commit",
+  "created_at": "2026-03-02T10:11:33.105633525Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "zodiacid/about.html",
+    "zodiacid/et/about.html",
+    "zodiacid/et/index.html",
+    "zodiacid/et/pricing.html",
+    "zodiacid/index.html",
+    "zodiacid/pricing.html",
+    "zodiacid/ru/about.html",
+    "zodiacid/ru/index.html",
+    "zodiacid/ru/pricing.html"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "53842356-fe86-4936-ad46-1dca47f8cd1a",
+  "token_usage": {
+    "input_tokens": 76,
+    "cache_creation_tokens": 124826,
+    "cache_read_tokens": 6337661,
+    "output_tokens": 27766,
+    "api_call_count": 70
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-03-02T10:11:32.961746811Z",
+    "agent_lines": 0,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 66,
+    "total_committed": 0,
+    "agent_percentage": 0
+  }
+}

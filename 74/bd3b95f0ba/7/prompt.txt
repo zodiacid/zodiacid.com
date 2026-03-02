@@ -1,0 +1,9 @@
+phases/i18n+seo.md - найди следующую незавершенную фазу и выполни её
+
+---
+
+I did it
+
+---
+
+remove links to substack push and deploy

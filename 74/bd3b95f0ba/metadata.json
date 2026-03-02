@@ -3,13 +3,16 @@
   "checkpoint_id": "74bd3b95f0ba",
   "strategy": "manual-commit",
   "branch": "main",
-  "checkpoints_count": 8,
+  "checkpoints_count": 9,
   "files_touched": [
     "zodiacid/404.html",
     "zodiacid/_headers",
     "zodiacid/about.html",
     "zodiacid/contact.html",
     "zodiacid/css/styles.css",
+    "zodiacid/et/about.html",
+    "zodiacid/et/index.html",
+    "zodiacid/et/pricing.html",
     "zodiacid/et/sample-natal-meri.html",
     "zodiacid/et/sample-natal-ots.html",
     "zodiacid/et/sample-natal-part.html",
@@ -23,7 +26,9 @@
     "zodiacid/product-synastry.html",
     "zodiacid/refund.html",
     "zodiacid/robots.txt",
+    "zodiacid/ru/about.html",
     "zodiacid/ru/index.html",
+    "zodiacid/ru/pricing.html",
     "zodiacid/ru/product-natal.html",
     "zodiacid/ru/sample-natal-pugacheva.html",
     "zodiacid/ru/sample-natal-tsoi.html",
@@ -86,13 +91,20 @@
       "context": "/74/bd3b95f0ba/6/context.md",
       "content_hash": "/74/bd3b95f0ba/6/content_hash.txt",
       "prompt": "/74/bd3b95f0ba/6/prompt.txt"
+    },
+    {
+      "metadata": "/74/bd3b95f0ba/7/metadata.json",
+      "transcript": "/74/bd3b95f0ba/7/full.jsonl",
+      "context": "/74/bd3b95f0ba/7/context.md",
+      "content_hash": "/74/bd3b95f0ba/7/content_hash.txt",
+      "prompt": "/74/bd3b95f0ba/7/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 1061,
-    "cache_creation_tokens": 962639,
-    "cache_read_tokens": 28489216,
-    "output_tokens": 125835,
-    "api_call_count": 340
+    "input_tokens": 1137,
+    "cache_creation_tokens": 1087465,
+    "cache_read_tokens": 34826877,
+    "output_tokens": 153601,
+    "api_call_count": 410
   }
 }
