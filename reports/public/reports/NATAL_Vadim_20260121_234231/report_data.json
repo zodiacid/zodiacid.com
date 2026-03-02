@@ -1,0 +1,561 @@
+{
+  "metadata": {
+    "report_id": "NATAL_Vadim_20260121_234231",
+    "analysis_type": "natal",
+    "languages": [
+      "ru"
+    ],
+    "generation_timestamp": "2026-01-21T23:48:24.599096",
+    "person1_name": "Vadim",
+    "person1_birth_date": "1973-06-05T20:00:00",
+    "person1_birth_place": "Tallinn, Estonia"
+  },
+  "charts": [
+    {
+      "person_name": "Vadim",
+      "planets": [
+        {
+          "name": "sun",
+          "sign": "Gemini",
+          "degree": "15°17'",
+          "longitude": 75.3,
+          "house": 12,
+          "retrograde": false
+        },
+        {
+          "name": "moon",
+          "sign": "Leo",
+          "degree": "23°46'",
+          "longitude": 143.76666666666668,
+          "house": 3,
+          "retrograde": false
+        },
+        {
+          "name": "mercury",
+          "sign": "Cancer",
+          "degree": "3°31'",
+          "longitude": 93.53333333333333,
+          "house": 12,
+          "retrograde": false
+        },
+        {
+          "name": "venus",
+          "sign": "Cancer",
+          "degree": "0°26'",
+          "longitude": 90.43333333333334,
+          "house": 12,
+          "retrograde": false
+        },
+        {
+          "name": "mars",
+          "sign": "Pisces",
+          "degree": "20°08'",
+          "longitude": 350.15,
+          "house": 10,
+          "retrograde": false
+        },
+        {
+          "name": "jupiter",
+          "sign": "Aquarius",
+          "degree": "12°03'",
+          "longitude": 312.06666666666666,
+          "house": 8,
+          "retrograde": true
+        },
+        {
+          "name": "saturn",
+          "sign": "Gemini",
+          "degree": "22°55'",
+          "longitude": 82.91666666666667,
+          "house": 12,
+          "retrograde": false
+        },
+        {
+          "name": "uranus",
+          "sign": "Libra",
+          "degree": "19°07'",
+          "longitude": 199.11666666666667,
+          "house": 5,
+          "retrograde": true
+        },
+        {
+          "name": "neptune",
+          "sign": "Sagittarius",
+          "degree": "5°48'",
+          "longitude": 245.8,
+          "house": 5,
+          "retrograde": true
+        },
+        {
+          "name": "pluto",
+          "sign": "Libra",
+          "degree": "1°39'",
+          "longitude": 181.66666666666666,
+          "house": 4,
+          "retrograde": true
+        },
+        {
+          "name": "chiron",
+          "sign": "Aries",
+          "degree": "19°56'",
+          "longitude": 19.933333333333334,
+          "house": 11,
+          "retrograde": false
+        },
+        {
+          "name": "cere",
+          "sign": "Sagittarius",
+          "degree": "9°45'",
+          "longitude": 249.75,
+          "house": 6,
+          "retrograde": true
+        },
+        {
+          "name": "pall",
+          "sign": "Libra",
+          "degree": "27°26'",
+          "longitude": 207.43333333333334,
+          "house": 5,
+          "retrograde": true
+        },
+        {
+          "name": "juno",
+          "sign": "Sagittarius",
+          "degree": "14°24'",
+          "longitude": 254.41666666666666,
+          "house": 6,
+          "retrograde": true
+        },
+        {
+          "name": "vest",
+          "sign": "Cancer",
+          "degree": "11°30'",
+          "longitude": 101.5,
+          "house": 12,
+          "retrograde": false
+        },
+        {
+          "name": "nort",
+          "sign": "Capricorn",
+          "degree": "8°57'",
+          "longitude": 278.96666666666664,
+          "house": 6,
+          "retrograde": true
+        },
+        {
+          "name": "lili",
+          "sign": "Sagittarius",
+          "degree": "22°11'",
+          "longitude": 262.2,
+          "house": 6,
+          "retrograde": false
+        },
+        {
+          "name": "fort",
+          "sign": "Virgo",
+          "degree": "28°48'",
+          "longitude": 178.81666666666666,
+          "house": 4,
+          "retrograde": false
+        },
+        {
+          "name": "vert",
+          "sign": "Scorpio",
+          "degree": "29°01'",
+          "longitude": 239.01666666666668,
+          "house": 5,
+          "retrograde": false
+        },
+        {
+          "name": "east",
+          "sign": "Gemini",
+          "degree": "10°45'",
+          "longitude": 70.75,
+          "house": 12,
+          "retrograde": false
+        }
+      ],
+      "houses": [
+        {
+          "number": 1,
+          "sign": "Cancer",
+          "cusp_degrees": 110.36666666666666,
+          "cusp_formatted": "110°21'",
+          "ruler": "Moon"
+        },
+        {
+          "number": 2,
+          "sign": "Leo",
+          "cusp_degrees": 121.85,
+          "cusp_formatted": "121°50'",
+          "ruler": "Sun"
+        },
+        {
+          "number": 3,
+          "sign": "Leo",
+          "cusp_degrees": 136.35,
+          "cusp_formatted": "136°20'",
+          "ruler": "Sun"
+        },
+        {
+          "number": 4,
+          "sign": "Virgo",
+          "cusp_degrees": 157.48333333333332,
+          "cusp_formatted": "157°28'",
+          "ruler": "Mercury"
+        },
+        {
+          "number": 5,
+          "sign": "Libra",
+          "cusp_degrees": 193.18333333333334,
+          "cusp_formatted": "193°11'",
+          "ruler": "Venus"
+        },
+        {
+          "number": 6,
+          "sign": "Sagittarius",
+          "cusp_degrees": 249.35,
+          "cusp_formatted": "249°20'",
+          "ruler": "Jupiter"
+        },
+        {
+          "number": 7,
+          "sign": "Capricorn",
+          "cusp_degrees": 290.3666666666667,
+          "cusp_formatted": "290°22'",
+          "ruler": "Saturn"
+        },
+        {
+          "number": 8,
+          "sign": "Aquarius",
+          "cusp_degrees": 301.85,
+          "cusp_formatted": "301°51'",
+          "ruler": "Uranus"
+        },
+        {
+          "number": 9,
+          "sign": "Aquarius",
+          "cusp_degrees": 316.35,
+          "cusp_formatted": "316°21'",
+          "ruler": "Uranus"
+        },
+        {
+          "number": 10,
+          "sign": "Pisces",
+          "cusp_degrees": 337.48333333333335,
+          "cusp_formatted": "337°29'",
+          "ruler": "Neptune"
+        },
+        {
+          "number": 11,
+          "sign": "Aries",
+          "cusp_degrees": 13.183333333333334,
+          "cusp_formatted": "13°11'",
+          "ruler": "Mars"
+        },
+        {
+          "number": 12,
+          "sign": "Gemini",
+          "cusp_degrees": 69.35,
+          "cusp_formatted": "69°20'",
+          "ruler": "Mercury"
+        }
+      ],
+      "aspects": [
+        {
+          "planet1": "sun",
+          "planet2": "juno",
+          "aspect": "opposition",
+          "orb": "1°"
+        },
+        {
+          "planet1": "moon",
+          "planet2": "saturn",
+          "aspect": "sextile",
+          "orb": "1°"
+        },
+        {
+          "planet1": "sun",
+          "planet2": "east",
+          "aspect": "conjunction",
+          "orb": "5°"
+        },
+        {
+          "planet1": "moon",
+          "planet2": "lili",
+          "aspect": "trine",
+          "orb": "0°"
+        },
+        {
+          "planet1": "sun",
+          "planet2": "jupiter",
+          "aspect": "trine",
+          "orb": "3°"
+        },
+        {
+          "planet1": "venus",
+          "planet2": "pluto",
+          "aspect": "square",
+          "orb": "1°"
+        },
+        {
+          "planet1": "sun",
+          "planet2": "mars",
+          "aspect": "square",
+          "orb": "3°"
+        },
+        {
+          "planet1": "sun",
+          "planet2": "uranus",
+          "aspect": "trine",
+          "orb": "4°"
+        },
+        {
+          "planet1": "mercury",
+          "planet2": "pluto",
+          "aspect": "square",
+          "orb": "0°"
+        },
+        {
+          "planet1": "mercury",
+          "planet2": "venus",
+          "aspect": "conjunction",
+          "orb": "3°"
+        },
+        {
+          "planet1": "saturn",
+          "planet2": "lili",
+          "aspect": "opposition",
+          "orb": "1°"
+        },
+        {
+          "planet1": "uranus",
+          "planet2": "chiron",
+          "aspect": "opposition",
+          "orb": "1°"
+        },
+        {
+          "planet1": "mars",
+          "planet2": "saturn",
+          "aspect": "square",
+          "orb": "3°"
+        },
+        {
+          "planet1": "moon",
+          "planet2": "chiron",
+          "aspect": "trine",
+          "orb": "4°"
+        },
+        {
+          "planet1": "venus",
+          "planet2": "fort",
+          "aspect": "square",
+          "orb": "0°"
+        },
+        {
+          "planet1": "pluto",
+          "planet2": "fort",
+          "aspect": "conjunction",
+          "orb": "3°"
+        },
+        {
+          "planet1": "moon",
+          "planet2": "pall",
+          "aspect": "sextile",
+          "orb": "4°"
+        },
+        {
+          "planet1": "sun",
+          "planet2": "cere",
+          "aspect": "opposition",
+          "orb": "4°"
+        },
+        {
+          "planet1": "mars",
+          "planet2": "lili",
+          "aspect": "square",
+          "orb": "2°"
+        },
+        {
+          "planet1": "jupiter",
+          "planet2": "east",
+          "aspect": "trine",
+          "orb": "1°"
+        },
+        {
+          "planet1": "sun",
+          "planet2": "chiron",
+          "aspect": "sextile",
+          "orb": "3°"
+        },
+        {
+          "planet1": "moon",
+          "planet2": "uranus",
+          "aspect": "sextile",
+          "orb": "3°"
+        },
+        {
+          "planet1": "cere",
+          "planet2": "east",
+          "aspect": "opposition",
+          "orb": "1°"
+        },
+        {
+          "planet1": "neptune",
+          "planet2": "cere",
+          "aspect": "conjunction",
+          "orb": "4°"
+        },
+        {
+          "planet1": "jupiter",
+          "planet2": "cere",
+          "aspect": "sextile",
+          "orb": "2°"
+        },
+        {
+          "planet1": "saturn",
+          "planet2": "uranus",
+          "aspect": "trine",
+          "orb": "2°"
+        },
+        {
+          "planet1": "jupiter",
+          "planet2": "juno",
+          "aspect": "sextile",
+          "orb": "2°"
+        },
+        {
+          "planet1": "fort",
+          "planet2": "vert",
+          "aspect": "sextile",
+          "orb": "0°"
+        },
+        {
+          "planet1": "venus",
+          "planet2": "pall",
+          "aspect": "trine",
+          "orb": "1°"
+        },
+        {
+          "planet1": "saturn",
+          "planet2": "chiron",
+          "aspect": "sextile",
+          "orb": "3°"
+        },
+        {
+          "planet1": "uranus",
+          "planet2": "lili",
+          "aspect": "sextile",
+          "orb": "3°"
+        },
+        {
+          "planet1": "chiron",
+          "planet2": "lili",
+          "aspect": "trine",
+          "orb": "2°"
+        },
+        {
+          "planet1": "mercury",
+          "planet2": "fort",
+          "aspect": "square",
+          "orb": "3°"
+        },
+        {
+          "planet1": "sun",
+          "planet2": "lili",
+          "aspect": "opposition",
+          "orb": "5°"
+        },
+        {
+          "planet1": "juno",
+          "planet2": "east",
+          "aspect": "opposition",
+          "orb": "2°"
+        },
+        {
+          "planet1": "neptune",
+          "planet2": "pluto",
+          "aspect": "sextile",
+          "orb": "4°"
+        },
+        {
+          "planet1": "neptune",
+          "planet2": "east",
+          "aspect": "opposition",
+          "orb": "3°"
+        },
+        {
+          "planet1": "cere",
+          "planet2": "juno",
+          "aspect": "conjunction",
+          "orb": "5°"
+        },
+        {
+          "planet1": "saturn",
+          "planet2": "pall",
+          "aspect": "trine",
+          "orb": "5°"
+        },
+        {
+          "planet1": "mars",
+          "planet2": "juno",
+          "aspect": "square",
+          "orb": "6°"
+        },
+        {
+          "planet1": "sun",
+          "planet2": "saturn",
+          "aspect": "conjunction",
+          "orb": "8°"
+        },
+        {
+          "planet1": "uranus",
+          "planet2": "juno",
+          "aspect": "sextile",
+          "orb": "3°"
+        },
+        {
+          "planet1": "saturn",
+          "planet2": "fort",
+          "aspect": "square",
+          "orb": "6°"
+        },
+        {
+          "planet1": "chiron",
+          "planet2": "juno",
+          "aspect": "trine",
+          "orb": "6°"
+        },
+        {
+          "planet1": "mercury",
+          "planet2": "pall",
+          "aspect": "trine",
+          "orb": "6°"
+        },
+        {
+          "planet1": "moon",
+          "planet2": "venus",
+          "aspect": "sextile",
+          "orb": "5°"
+        },
+        {
+          "planet1": "pall",
+          "planet2": "lili",
+          "aspect": "sextile",
+          "orb": "5°"
+        },
+        {
+          "planet1": "lili",
+          "planet2": "fort",
+          "aspect": "square",
+          "orb": "5°"
+        }
+      ]
+    }
+  ],
+  "total_words": 10695,
+  "total_cost": 0.048350000000000004,
+  "languages": [
+    "ru"
+  ]
+}
