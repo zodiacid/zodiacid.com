@@ -1,0 +1,921 @@
+phases/i18n+seo.md - найди следующую незавершенную фазу и выполни её
+
+---
+
+<task-notification>
+<task-id>aa62c3c5ed2f91e8e</task-id>
+<tool-use-id>REDACTED</tool-use-id>
+<status>completed</status>
+<summary>Agent "Audit SEO meta tags all pages" completed</summary>
+<result>I have now read all 53 HTML files (excluding partials). Let me compile the full audit report.
+
+---
+
+## SEO Meta Tags Audit Report
+
+Total files audited: 53 (20 root, 16 ru/, 14 et/, 3 404 pages)
+
+---
+
+### 1. `<html lang="">` 
+
+**PASS** -- All root pages have `lang="en"`, all ru/ pages have `lang="ru"`, all et/ pages have `lang="et"`.
+
+---
+
+### 2. `<meta name="robots">`
+
+**PASS** -- All 404.html files (root, ru/, et/) have `noindex, nofollow`. All other pages have `index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1`.
+
+---
+
+### 3. `<link rel="canonical">`
+
+**PASS** -- All non-404 pages have self-referencing canonical URLs with trailing slash and HTTPS. All 404.html files correctly omit the canonical tag.
+
+---
+
+### 4. Hreflang links
+
+**ISSUES FOUND:**
+
+The following EN celebrity sample pages are missing `hreflang="ru"` and `hreflang="et"` alternates. Per the rules, "Celebrity sample pages that are language-specific may only have their own language + x-default" -- but these EN celebrity pages only have `en` + `x-default`, which is correct since they are language-specific. However, the **non-celebrity** EN sample pages (sample-synastry-lennon-ono, sample-parenting-prince-george, sample-redflag-pitt-jolie) also only have `en` + `x-default` with no `ru`/`et` alternates. Since these EN-only sample pages do not exist in ru/ or et/, this is actually correct behavior (you should not hreflang-reference pages that do not exist).
+
+Re-checking the sample-natal pages for EN:
+- `sample-natal-taylor-swift.html` -- has `en` + `x-default` only. Correct (no RU/ET equivalent exists).
+- `sample-natal-freddie-mercury.html` -- has `en` + `x-default` only. Correct.
+- `sample-natal-beyonce.html` -- has `en` + `x-default` only. Correct.
+- `sample-synastry-lennon-ono.html` -- has `en` + `x-default` only. Correct.
+- `sample-parenting-prince-george.html` -- has `en` + `x-default` only. Correct.
+- `sample-redflag-pitt-jolie.html` -- has `en` + `x-default` only. Correct.
+
+RU celebrity samples:
+- `ru/sample-natal-tsoi.html` -- has `ru` + `x-default` only. Correct.
+- `ru/sample-natal-pugacheva.html` -- has `ru` + `x-default` only. Correct.
+- `ru/sample-natal-vysotsky.html` -- has `ru` + `x-default` only. Correct.
+
+ET celebrity samples:
+- `et/sample-natal-part.html` -- has `et` + `x-default` only. Correct.
+- `et/sample-natal-ots.html` -- has `et` + `x-default` only. Correct.
+- `et/sample-natal-meri.html` -- has `et` + `x-default` only. Correct.
+
+**ISSUE 4a: `x-default` on RU/ET celebrity samples points to the RU/ET URL instead of the EN URL.**
+
+Per SEO best practice, `x-default` should point to the default (English) version of the page, or at minimum to the language-neutral URL. For language-specific celebrity pages that have no EN equivalent, it is debatable, but pointing `x-default` to the same language-specific URL is an inconsistency:
+
+| File | x-default points to | Expected |
+|------|---------------------|----------|
+| `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample-natal-tsoi.html` | `https://zodiacid.com/ru/sample-natal-tsoi/` | Acceptable (no EN equivalent) but inconsistent with pattern |
+| `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample-natal-pugacheva.html` | `https://zodiacid.com/ru/sample-natal-pugacheva/` | Same |
+| `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample-natal-vysotsky.html` | `https://zodiacid.com/ru/sample-natal-vysotsky/` | Same |
+| `/home/vadim/Projects/zodiacid/sites/zodiacid/et/sample-natal-part.html` | `https://zodiacid.com/et/sample-natal-part/` | Same |
+| `/home/vadim/Projects/zodiacid/sites/zodiacid/et/sample-natal-ots.html` | `https://zodiacid.com/et/sample-natal-ots/` | Same |
+| `/home/vadim/Projects/zodiacid/sites/zodiacid/et/sample-natal-meri.html` | `https://zodiacid.com/et/sample-natal-meri/` | Same |
+
+Note: The EN celebrity sample pages have the same pattern (x-default = EN URL), which is correct since EN is the default language. For RU/ET-only pages with no EN equivalent, pointing x-default to themselves is technically valid but Google may prefer x-default pointing to the sample hub `/sample/` instead. This is a judgment call, not a hard failure.
+
+**ISSUE 4b: `og:url` is missing from all three 404.html pages.**
+
+All 404 pages correctly omit `og:url` -- since 404 pages have no canonical URL, this is actually correct behavior. Not a failure.
+
+**PASS** (with the minor note about x-default on language-specific celebrity pages above, which is acceptable behavior for pages with no cross-language equivalent).
+
+---
+
+### 5. `<title>` -- unique per page, in correct language
+
+**PASS** -- Every page has a unique title tag. Root titles are in English, ru/ titles are in Russian, et/ titles are in Estonian.
+
+---
+
+### 6. `<meta name="description">` -- unique per page, in correct language
+
+**PASS** -- Every page has a unique description tag in the correct language.
+
+---
+
+### 7. OG tags
+
+**ISSUES FOUND:**
+
+**ISSUE 7a: `og:url` missing from 404.html pages (all 3)**
+
+| File | Issue |
+|------|-------|
+| `/home/vadim/Projects/zodiacid/sites/zodiacid/404.html` | Missing `og:url` |
+| `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/404.html` | Missing `og:url` |
+| `/home/vadim/Projects/zodiacid/sites/zodiacid/et/404.html` | Missing `og:url` |
+
+This is arguably correct since 404 pages have no canonical URL and should not be indexed. Not a real issue.
+
+All other OG tags verified:
+- `og:locale`: `en_US` for root, `ru_RU` for ru/, `et_EE` for et/ -- **PASS**
+- `og:title`: Present on all pages -- **PASS**
+- `og:description`: Present on all pages -- **PASS**
+- `og:site_name`: "ZodiacID" on all pages -- **PASS**
+- `og:url`: Present on all non-404 pages, self-referencing with trailing slash -- **PASS**
+
+---
+
+## Summary
+
+**Everything passes.** The site's SEO meta tags are clean and consistent across all 53 HTML pages. The only item worth noting (but not a failure):
+
+- **x-default hreflang on RU/ET celebrity sample pages** points to the RU/ET URL itself rather than an EN equivalent. This is technically valid since no EN equivalent exists for those pages, but differs from the pattern used on EN celebrity samples where x-default points to the EN URL (which happens to be the page itself). If you wanted perfect consistency, you could point x-default on language-specific celebrity pages to the main sample hub (`/sample/`) instead, but this is not required.</result>
+<usage><total_tokens>108257</total_tokens><tool_uses>56</tool_uses><duration_ms>93620</duration_ms></usage>
+</task-notification>
+Full transcript available at: REDACTED.output
+
+---
+
+<task-notification>
+<task-id>a6cda41c3081a4f32</task-id>
+<tool-use-id>REDACTED</tool-use-id>
+<status>completed</status>
+<summary>Agent "Audit infra + content quality" completed</summary>
+<result>So the display headers use proper Russian city names (Ленинград, Москва), but the auto-generated report intro text on line 122 uses English names ("Saint Petersburg", "Moscow") and English names for the people ("Viktor Tsoi", "Alla Pugacheva", "Vladimir Vysotsky"). This is a locale purity issue in the generated report content embedded in the HTML.
+
+Let me also verify Georg Ots birth place. He was born in Petrograd (now Saint Petersburg), not in Tallinn. The ET sample correctly says "Petrograd (praegune Peterburi)". Good.
+
+Here is my complete audit report.
+
+---
+
+## Audit Results: FAILURES ONLY
+
+### 1. `_headers` -- PASS
+Exists with security headers (X-Content-Type-Options, Referrer-Policy, Permissions-Policy) and cache control rules for css/js/images (immutable, 1 year) and HTML (1 hour).
+
+### 2. `sitemap.xml` -- PASS
+Exactly 51 `<loc>` entries. All shared pages have xhtml:link hreflang alternates (en/ru/et/x-default). Celebrity sample pages correctly lack hreflang alternates (they are distinct, not translations).
+
+### 3. `robots.txt` -- PASS
+Has `Allow: /`, `Disallow: /api/`, and `Sitemap: https://zodiacid.com/sitemap.xml`.
+
+### 4. `site.webmanifest` -- PASS
+Valid JSON with name, icons, theme_color, background_color, categories.
+
+---
+
+### FAILURES:
+
+**FAILURE 5: RU report intro lines contain English names and city names**
+
+File: `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample-natal-tsoi.html` line 122:
+```
+Дата рождения: 21.06.1962 в 12:00, Saint Petersburg, Россия. Отчёт составлен для Viktor Tsoi.
+```
+Should be: `Санкт-Петербург` (or `Ленинград`), and `Виктора Цоя`.
+
+File: `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample-natal-pugacheva.html` line 122:
+```
+Дата рождения: 15.04.1949 в 23:10, Moscow, Россия. Отчёт составлен для Alla Pugacheva.
+```
+Should be: `Москва` (matches the header but not the report body), and `Аллы Пугачёвой`.
+
+File: `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample-natal-vysotsky.html` line 122:
+```
+Дата рождения: 25.01.1938 в 09:40, Moscow, Россия. Отчёт составлен для Vladimir Vysotsky.
+```
+Should be: `Москва`, and `Владимира Высоцкого`.
+
+**FAILURE 6: Price format is NOT "EUR 34.90" consistently -- two formats in use**
+
+- `class="form-price"` elements (order forms): use `EUR 34.90` -- 12 occurrences across product pages.
+- `class="price"` elements (display), CTA buttons, FAQ text: use `&euro;34.90` (euro symbol) -- 76 occurrences across 31 files.
+- `<title>` and `<meta>` tags: use `EUR 34.90`.
+
+The site uses two different formats. This is not necessarily wrong (it may be deliberate: "EUR" in metadata/forms vs symbol in display), but it is inconsistent with the "EUR 34.90" standard you specified.
+
+**FAILURE 7: Freddie Mercury birth location contains Arabic text (geocoder artifact)**
+
+File: `/home/vadim/Projects/zodiacid/sites/zodiacid/sample-natal-freddie-mercury.html` line 122:
+```
+Created for Freddie Mercury, born on September 05, 1946 at 05:10 in Stone Town مدينة زنجبار الحجرية, Tanzania.
+```
+The Arabic string `مدينة زنجبار الحجرية` is a Nominatim geocoder artifact and should be removed. Should read: `Stone Town, Zanzibar` or `Stone Town, Tanzania`.
+
+**FAILURE 8: ET report for Arvo Part -- name missing diacritic in report body**
+
+File: `/home/vadim/Projects/zodiacid/sites/zodiacid/et/sample-natal-part.html` line 122:
+```
+See aruanne on koostatud Arvo Part jaoks, kes sündis 11.09.1935 kell 12:00 kohas Paide, Eesti.
+```
+Should be `Arvo Pärt` (with umlaut). The page `<title>` and Schema.org JSON-LD correctly use `Arvo Pärt`, but the report intro text uses `Arvo Part` without the diacritic. The same issue appears in the body text at lines 358, 360.
+
+**FAILURE 9: RU and ET sample.html pages link to synastry/parenting/redflag samples that do not exist in those directories -- 404 links**
+
+Both `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample.html` and `/home/vadim/Projects/zodiacid/sites/zodiacid/et/sample.html` contain relative links to:
+- `sample-synastry-lennon-ono.html` (lines 181, 238 in RU; lines 178, 235 in ET)
+- `sample-parenting-prince-george.html` (lines 208, 247 in RU; lines 205, 244 in ET)
+
+These files do NOT exist in `/ru/` or `/et/` directories. The relative links resolve to:
+- `/ru/sample-synastry-lennon-ono.html` -- 404
+- `/ru/sample-parenting-prince-george.html` -- 404
+- `/et/sample-synastry-lennon-ono.html` -- 404
+- `/et/sample-parenting-prince-george.html` -- 404
+
+They should use `../sample-synastry-lennon-ono.html` or absolute paths `/sample-synastry-lennon-ono.html`.
+
+Additionally, the Schema.org JSON-LD in both RU and ET sample.html pages references EN-only URLs for the synastry, parenting, and redflag samples (pointing to root `/sample-synastry-lennon-ono/` etc.), which is correct for SEO (they are the canonical locations), but the HTML navigation links are broken as described above.
+
+**FAILURE 10: EN Freddie Mercury report shows "September 05" with leading zero**
+
+File: `/home/vadim/Projects/zodiacid/sites/zodiacid/sample-natal-freddie-mercury.html` line 122:
+```
+born on September 05, 1946
+```
+The header (line 81) correctly shows `Born September 5, 1946` (no leading zero), but the report body intro uses `September 05` with a zero-padded day, which is not standard English date formatting.
+
+Similarly, Beyonce's report body (line 132) shows `September 04, 1981` vs the header's correct `September 4, 1981`.</result>
+<usage><total_tokens>83659</total_tokens><tool_uses>48</tool_uses><duration_ms>159871</duration_ms></usage>
+</task-notification>
+Full transcript available at: REDACTED.output
+
+---
+
+<task-notification>
+<task-id>a567ddaee34c17f6e</task-id>
+<tool-use-id>toolu_01H3TyCoRHBoa9pakRp5C584</tool-use-id>
+<status>completed</status>
+<summary>Agent "Audit schema.org JSON-LD all pages" completed</summary>
+<result>Now I have a comprehensive picture. Let me compile the final list of issues. Pages that have schemas but are MISSING `inLanguage`:
+
+1. ALL `about.html` (EN/RU/ET) -- AboutPage schema missing `inLanguage`
+2. ALL `contact.html` (EN/RU/ET) -- ContactPage schema missing `inLanguage`
+3. ALL `sample.html` (EN/RU/ET) -- ItemList schema missing `inLanguage`
+4. ALL `pricing.html` (EN/RU/ET) -- OfferCatalog schema missing `inLanguage`
+
+Let me also check the `et/faq.html` BreadcrumbList (already confirmed FAQPage is fine for all faq pages).
+
+Now I have all the data I need. Here is the complete audit report.
+
+---
+
+## Schema.org JSON-LD Audit Report -- Failures Only
+
+### 1. PRODUCT PAGES (product-natal, product-synastry, product-parenting, product-redflag)
+
+**ISSUE P1: `ru/product-parenting.html` -- English text in `about.name` field**
+- File: `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/product-parenting.html` (line 383)
+- `"name": "Natal chart"` should be `"name": "Натальная карта"` (all other RU product pages use Russian)
+
+**PASS:** Brand uses `@type: Organization` on all 12 product pages (4 products x 3 languages). All have `image`, correct `inLanguage`, full Offer with `hasMerchantReturnPolicy` and `shippingDetails`, FAQPage schema, and localized BreadcrumbList.
+
+---
+
+### 2. SAMPLE/CELEBRITY PAGES
+
+**ISSUE S1: `sample-synastry-lennon-ono.html` -- Article missing `about` field**
+- File: `/home/vadim/Projects/zodiacid/sites/zodiacid/sample-synastry-lennon-ono.html` (line 650-675)
+- Has `datePublished`, `inLanguage`, `publisher.logo` -- but no `about` property. All natal sample pages have `about`, and the parenting sample has it too, but synastry and redflag samples do not.
+
+**ISSUE S2: `sample-redflag-pitt-jolie.html` -- Article missing `about` field**
+- File: `/home/vadim/Projects/zodiacid/sites/zodiacid/sample-redflag-pitt-jolie.html` (line 531-556)
+- Same issue as S1.
+
+**PASS:** All celebrity pages (EN, RU, ET) have Article schema with `datePublished`, `inLanguage` matching page language, `publisher.logo`, and BreadcrumbList.
+
+---
+
+### 3. INDEX.HTML (all 3 languages)
+
+**PASS:** All three index pages have WebSite, Organization, and FAQPage schemas. `inLanguage` is correct on all (WebSite uses array `["en","ru","et"]`, FAQPage uses page-specific language).
+
+**ISSUE I1: Founder name inconsistency between `index.html` and `about.html`**
+- All `index.html` Organization schemas: `"founder": {"name": "Sergei Tkatshenko"}`
+- EN `about.html` AboutPage schema: `"founder": {"name": "Vadik Iljin"}`
+- RU `about.html` AboutPage schema: `"founder": {"name": "Вадим Ильин"}`
+- ET `about.html` AboutPage schema: `"founder": {"name": "Vadik Iljin"}`
+- The body text on all `about.html` pages says "Sergei Tkatshenko" (or "Сергеем Ткаченко" in RU), contradicting the JSON-LD.
+
+---
+
+### 4. SAMPLE.HTML (all 3 languages) -- ItemList
+
+**ISSUE L1: ALL `sample.html` pages missing `inLanguage` on ItemList schema**
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/sample.html` (line 307)
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample.html` (line 301)
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/sample.html` (line 298)
+- None of the three ItemList schemas include `inLanguage`.
+
+**Note (not a bug):** RU and ET `sample.html` ItemList items 4-6 (synastry, parenting, redflag) link to EN-only URLs (`/sample-synastry-lennon-ono/`, `/sample-parenting-prince-george/`, `/sample-redflag-pitt-jolie/`). These are technically correct since no RU/ET localized versions of those sample pages exist.
+
+---
+
+### 5. FAQ.HTML
+
+**PASS:** All three `faq.html` pages have FAQPage schema with correct `inLanguage` ("en", "ru", "et" respectively) and BreadcrumbList.
+
+---
+
+### 6. CONTACT.HTML
+
+**ISSUE C1: ALL `contact.html` pages missing `inLanguage` on ContactPage schema**
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/contact.html` (line 174)
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/contact.html` (line 174)
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/contact.html` (line 174)
+- None of the three ContactPage schemas include `inLanguage`.
+
+---
+
+### 7. ABOUT.HTML
+
+**ISSUE A1: ALL `about.html` pages missing `inLanguage` on AboutPage schema**
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/about.html` (line 167)
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/about.html` (line 167)
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/about.html` (line 167)
+- None of the three AboutPage schemas include `inLanguage`.
+
+**ISSUE A2: Founder name mismatch** (see I1 above -- JSON-LD says "Vadik Iljin"/"Вадим Ильин" while body text says "Sergei Tkatshenko"/"Сергеем Ткаченко")
+
+---
+
+### 8. 404.HTML
+
+**PASS:** All three 404 pages (EN, RU, ET) have zero JSON-LD script blocks. Correct.
+
+---
+
+### 9. MISSING `inLanguage` SUMMARY (all pages)
+
+**ISSUE M1: ALL `pricing.html` pages missing `inLanguage` on OfferCatalog schema**
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/pricing.html` (line 172)
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/pricing.html` (line 172)
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/pricing.html` (line 172)
+
+**ISSUE M2: RU and ET `pricing.html` OfferCatalog product URLs point to EN pages**
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/pricing.html` lines 186, 199, 212: URLs are `/product-natal/`, `/product-synastry/`, `/product-parenting/` -- should be `/ru/product-natal/`, `/ru/product-synastry/`, `/ru/product-parenting/`
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/pricing.html` lines 186, 199, 212: same issue -- should use `/et/` prefix
+
+---
+
+### CONSOLIDATED ISSUE LIST
+
+| # | Severity | File(s) | Issue |
+|---|----------|---------|-------|
+| P1 | Medium | `ru/product-parenting.html` | `about.name` is English "Natal chart" instead of Russian |
+| S1 | Low | `sample-synastry-lennon-ono.html` | Article schema missing `about` field |
+| S2 | Low | `sample-redflag-pitt-jolie.html` | Article schema missing `about` field |
+| I1/A2 | High | All `about.html` vs all `index.html` | Founder name mismatch: JSON-LD says "Vadik Iljin" in about, "Sergei Tkatshenko" in index. Body text says Tkatshenko. |
+| L1 | Medium | All 3 `sample.html` | ItemList schema missing `inLanguage` |
+| C1 | Medium | All 3 `contact.html` | ContactPage schema missing `inLanguage` |
+| A1 | Medium | All 3 `about.html` | AboutPage schema missing `inLanguage` |
+| M1 | Medium | All 3 `pricing.html` | OfferCatalog schema missing `inLanguage` |
+| M2 | High | `ru/pricing.html`, `et/pricing.html` | OfferCatalog product URLs point to EN pages instead of localized URLs |
+
+**Total: 9 distinct issues across 16 files.**</result>
+<usage><total_tokens>99284</total_tokens><tool_uses>80</tool_uses><duration_ms>215365</duration_ms></usage>
+</task-notification>
+Full transcript available at: REDACTED.output
+
+---
+
+<task-notification>
+<task-id>a5bf5c37a457e71f0</task-id>
+<tool-use-id>toolu_016QvLiKoi9EEDe59AyXqEa1</tool-use-id>
+<status>completed</status>
+<summary>Agent "Audit language isolation + nav links" completed</summary>
+<result>Now I have a comprehensive picture. Here is the complete audit report.
+
+---
+
+## Audit Results: Language Isolation and Navigation Failures
+
+### FAILURE 1: English email placeholder `you@example.com` in RU pages
+
+All RU form pages use the English placeholder `you@example.com` instead of a Russian-localized placeholder (like `vashe@pochta.ru` or at minimum `email@primer.com`).
+
+**Affected files (6):**
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/index.html:315` -- newsletter email input
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/product-natal.html:182` -- order form
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/product-synastry.html:192` -- order form
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/product-redflag.html:180` -- order form
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/product-parenting.html:172` -- order form
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/contact.html:100` -- contact form
+
+---
+
+### FAILURE 2: English sr-only label `Email address` in RU index
+
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/index.html:314` -- `<label class="sr-only">Email address</label>` should be `Электронная почта` (screen reader accessible text is in English)
+
+---
+
+### FAILURE 3: English alt text on images in RU pages
+
+Full English alt text descriptions on images in RU pages:
+
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/about.html:114` -- `alt="Example natal wheel chart -- Beyonce's birth chart showing Virgo Sun, Scorpio Moon, Libra Ascendant"` (should be Russian)
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/product-parenting.html:92` -- `alt="Prince George birth chart natal wheel -- Cancer Sun, Capricorn Moon"` (should be Russian)
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample.html:194` -- `alt="Prince George birth chart natal wheel -- Cancer Sun, Capricorn Moon"` (should be Russian)
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/product-synastry.html:92` -- `alt="John Lennon & Yoko Ono synastry biwheel -- Libra Sun and Aquarius Sun compatibility chart"` (should be Russian)
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/product-redflag.html:92` -- `alt="Brad Pitt & Angelina Jolie synastry biwheel -- Sagittarius Sun and Gemini Sun relationship chart"` (should be Russian)
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample.html:167` -- `alt="John Lennon & Yoko Ono synastry compatibility chart -- Libra Sun and Aquarius Sun"` (should be Russian)
+
+---
+
+### FAILURE 4: English `aria-label="Language"` in some ET pages
+
+The lang-switcher `aria-label` is `"Language"` (English) instead of `"Keel"` (Estonian) on 4 ET pages:
+
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/about.html:55`
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/contact.html:55`
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/refund.html:55`
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/404.html:49`
+
+All other ET pages correctly use `aria-label="Keel"`.
+
+---
+
+### FAILURE 5: Broken links -- RU/ET pages link to non-existent localized sample files
+
+RU and ET `sample.html` and product pages link to `sample-synastry-lennon-ono.html`, `sample-parenting-prince-george.html`, and `sample-redflag-pitt-jolie.html` as relative paths. These files do NOT exist in `ru/` or `et/` directories, so clicking them results in a 404.
+
+**Affected links in RU (6):**
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample.html:181` -- `href="sample-synastry-lennon-ono.html"`
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample.html:208` -- `href="sample-parenting-prince-george.html"`
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample.html:238` -- `href="sample-synastry-lennon-ono.html"`
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample.html:247` -- `href="sample-parenting-prince-george.html"`
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/product-synastry.html:106` -- `href="sample-synastry-lennon-ono.html"`
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/product-redflag.html:106` -- `href="sample-redflag-pitt-jolie.html"`
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/product-parenting.html:106` -- `href="sample-parenting-prince-george.html"`
+
+**Affected links in ET (6):**
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/sample.html:178` -- `href="sample-synastry-lennon-ono.html"`
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/sample.html:205` -- `href="sample-parenting-prince-george.html"`
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/sample.html:235` -- `href="sample-synastry-lennon-ono.html"`
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/sample.html:244` -- `href="sample-parenting-prince-george.html"`
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/product-synastry.html:106` -- `href="sample-synastry-lennon-ono.html"`
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/product-redflag.html:106` -- `href="sample-redflag-pitt-jolie.html"`
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/product-parenting.html:106` -- `href="sample-parenting-prince-george.html"`
+
+These should either link to the EN versions with absolute paths (`/sample-synastry-lennon-ono.html`) or localized versions should be created.
+
+---
+
+### FAILURE 6: JSON-LD structured data URLs point to EN root instead of localized paths
+
+In `ru/pricing.html` and `et/pricing.html`, the product URLs in JSON-LD point to `https://zodiacid.com/product-natal/` (EN root) instead of `https://zodiacid.com/ru/product-natal/` or `https://zodiacid.com/et/product-natal/`.
+
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/pricing.html:186` -- `"url": "https://zodiacid.com/product-natal/"` (should be `/ru/product-natal/`)
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/pricing.html:199` -- `"url": "https://zodiacid.com/product-synastry/"` (should be `/ru/product-synastry/`)
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/pricing.html:212` -- `"url": "https://zodiacid.com/product-parenting/"` (should be `/ru/product-parenting/`)
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/pricing.html:186` -- `"url": "https://zodiacid.com/product-natal/"` (should be `/et/product-natal/`)
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/pricing.html:199` -- `"url": "https://zodiacid.com/product-synastry/"` (should be `/et/product-synastry/`)
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/pricing.html:212` -- `"url": "https://zodiacid.com/product-parenting/"` (should be `/et/product-parenting/`)
+
+Also, sample.html JSON-LD in both RU and ET point to EN-only sample URLs:
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample.html:330` -- `"url": "https://zodiacid.com/sample-synastry-lennon-ono/"`
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample.html:336` -- `"url": "https://zodiacid.com/sample-parenting-prince-george/"`
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample.html:342` -- `"url": "https://zodiacid.com/sample-redflag-pitt-jolie/"`
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/sample.html:327,333,339` -- same issue
+
+---
+
+### FAILURE 7: English `"name": "Natal chart"` in RU JSON-LD
+
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/product-parenting.html:383` -- `"name": "Natal chart"` in JSON-LD `about` field should be `"Натальная карта"`
+
+---
+
+### FAILURE 8: ET cookie banner text inconsistency (minor, not English leak)
+
+ET celebrity sample pages use different cookie banner wording and button text than all other ET pages:
+
+- Regular ET pages: `"analüütika ja parema kasutuskogemuse jaoks"` / buttons: `Nõustu` / `Keeldu`
+- Celebrity samples (`sample-natal-meri.html`, `sample-natal-ots.html`, `sample-natal-part.html`): `"analüütikaks ja kasutuskogemuse parandamiseks"` / buttons: `Nõustun` / `Keeldun`
+
+Both are valid Estonian, but the inconsistency signals a different template was used.
+
+---
+
+### FAILURE 9: RU cookie banner text inconsistency (minor, not English leak)
+
+- Regular RU pages: `"Мы используем cookie для аналитики и улучшения вашего опыта."`
+- Celebrity samples (`sample-natal-pugacheva.html`, `sample-natal-tsoi.html`, `sample-natal-vysotsky.html`): `"Мы используем cookies для аналитики и улучшения работы сайта."`
+
+---
+
+### PASSED CHECKS (no issues found):
+- No English nav text (Home, Pricing, About, etc.) in RU/ET pages
+- No "Skip to content" in English in RU/ET
+- No English "Read more", "Buy now", "Learn more" in RU/ET
+- "Tallinn, Eesti" correctly used in all ET pages (not "Tallinn, Estonia")
+- "Таллинн, Эстония" correctly used in all RU pages
+- No English Privacy/Terms/Refund/Cookie link text in RU/ET
+- Language switcher present on all pages with correct `hreflang`, `lang`, and `aria-current="true"` attributes
+- EN root pages do NOT use /en/ prefix (correct)
+- All internal nav/footer links use relative paths within their language directory (correct)
+- `<html lang="ru">` and `<html lang="et">` correctly set on all localized pages
+- Footer text fully translated in both RU and ET
+- Cookie banner text and buttons translated in both RU and ET (except consistency issues noted above)
+- No English button text (Accept/Decline/Submit/Send) leaking into RU/ET
+- `hreflang` alternate links present on all pages except 404 pages (acceptable -- 404 pages typically don't need them)</result>
+<usage><total_tokens>93407</total_tokens><tool_uses>85</tool_uses><duration_ms>236175</duration_ms></usage>
+</task-notification>
+Full transcript available at: REDACTED.output
+
+---
+
+<task-notification>
+<task-id>a3d7974dea0124f16</task-id>
+<tool-use-id>REDACTED</tool-use-id>
+<status>completed</status>
+<summary>Agent "Fix schema.org issues all pages" completed</summary>
+<result>All verifications pass. Here is a summary of all changes made:
+
+---
+
+**All 20 schema.org JSON-LD fixes applied across 15 files in `sites/zodiacid/`:**
+
+### 1. Added `inLanguage` to 12 files (right after `@type`):
+
+| File | Schema Type | Language |
+|------|------------|----------|
+| `/home/vadim/Projects/zodiacid/sites/zodiacid/about.html` | AboutPage | `"en"` |
+| `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/about.html` | AboutPage | `"ru"` |
+| `/home/vadim/Projects/zodiacid/sites/zodiacid/et/about.html` | AboutPage | `"et"` |
+| `/home/vadim/Projects/zodiacid/sites/zodiacid/contact.html` | ContactPage | `"en"` |
+| `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/contact.html` | ContactPage | `"ru"` |
+| `/home/vadim/Projects/zodiacid/sites/zodiacid/et/contact.html` | ContactPage | `"et"` |
+| `/home/vadim/Projects/zodiacid/sites/zodiacid/sample.html` | ItemList | `"en"` |
+| `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample.html` | ItemList | `"ru"` |
+| `/home/vadim/Projects/zodiacid/sites/zodiacid/et/sample.html` | ItemList | `"et"` |
+| `/home/vadim/Projects/zodiacid/sites/zodiacid/pricing.html` | OfferCatalog | `"en"` |
+| `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/pricing.html` | OfferCatalog | `"ru"` |
+| `/home/vadim/Projects/zodiacid/sites/zodiacid/et/pricing.html` | OfferCatalog | `"et"` |
+
+### 2. Fixed founder name in 3 about page schemas:
+
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/about.html` -- `"Vadik Iljin"` changed to `"Sergei Tkatshenko"`
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/about.html` -- `"Вадим Ильин"` changed to `"Сергей Ткаченко"`
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/about.html` -- `"Vadik Iljin"` changed to `"Sergei Tkatshenko"`
+
+### 3. Fixed RU/ET pricing schema product URLs (6 URL changes across 2 files):
+
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/pricing.html` -- All 3 product URLs now include `/ru/` prefix (product-natal, product-synastry, product-parenting)
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/pricing.html` -- All 3 product URLs now include `/et/` prefix
+
+### 4. Fixed RU product-parenting schema about name (1 file):
+
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/product-parenting.html` -- `"name": "Natal chart"` changed to `"name": "Натальная карта"` in the `about` field
+
+### 5. Added `about` field to 2 Article schemas:
+
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/sample-synastry-lennon-ono.html` -- Added `about` with `"name": "Synastry compatibility analysis"` and description about Lennon/Ono
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/sample-redflag-pitt-jolie.html` -- Added `about` with `"name": "Red Flag relationship analysis"` and description about Pitt/Jolie</result>
+<usage><total_tokens>109634</total_tokens><tool_uses>48</tool_uses><duration_ms>86559</duration_ms></usage>
+</task-notification>
+Full transcript available at: REDACTED.output
+
+---
+
+<task-notification>
+<task-id>a33fad3ca02cd509d</task-id>
+<tool-use-id>toolu_01JiYaFYBPLwEqBYdsEFMCPM</tool-use-id>
+<status>completed</status>
+<summary>Agent "Fix language purity issues" completed</summary>
+<result>All changes are confirmed. Here is a summary of all edits made:
+
+---
+
+## Summary of all language purity fixes
+
+### 1. RU celebrity report intros and conclusions -- English names/cities (3 files)
+
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample-natal-tsoi.html`: "Saint Petersburg" changed to "Ленинград", "Viktor Tsoi" changed to "Виктора Цоя" (genitive in intro), "Виктор Цой" (nominative in conclusion line 369), and "Виктора Цоя" (genitive in conclusion line 371).
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample-natal-pugacheva.html`: "Moscow" changed to "Москва", "Alla Pugacheva" changed to "Аллы Пугачёвой" (genitive in intro), "Алла Пугачёва" (nominative in conclusion line 362), and "Аллы Пугачёвой" (genitive in conclusion line 364).
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample-natal-vysotsky.html`: "Moscow" changed to "Москва", "Vladimir Vysotsky" changed to "Владимира Высоцкого" (genitive in intro), "Владимир Высоцкий" (nominative in conclusion line 330), and "Владимира Высоцкого" (genitive in conclusion line 332).
+
+### 2. Freddie Mercury Arabic text + leading zero (1 file)
+
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/sample-natal-freddie-mercury.html` line 122: Removed Arabic text `مدينة زنجبار الحجرية`, now reads "Stone Town, Zanzibar, Tanzania". Also fixed "September 05" to "September 5".
+
+### 3. Arvo Part diacritic (1 file)
+
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/et/sample-natal-part.html`: All 3 body text instances of "Arvo Part" changed to "Arvo Pärt" (lines 122, 358, 360). URLs and file references were unaffected.
+
+### 4. English alt text in RU pages (3 files, 5 edits)
+
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/about.html` line 114: alt text translated to Russian ("Пример натальной карты -- карта рождения Бейонсе...")
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/product-parenting.html` line 92: alt text translated ("Натальная карта принца Джорджа...")
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample.html` line 167: Lennon/Ono synastry alt text translated to Russian
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample.html` line 194: Prince George alt text translated to Russian
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/product-synastry.html` line 92: Lennon/Ono alt text translated
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/product-redflag.html` line 92: Pitt/Jolie alt text translated
+
+### 5. English sr-only label in RU index (1 file)
+
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/index.html` line 314: "Email address" changed to "Электронная почта"
+
+### 6. Email placeholder in RU pages (6 files)
+
+- `ru/index.html`, `ru/product-natal.html`, `ru/product-synastry.html`, `ru/product-redflag.html`, `ru/product-parenting.html`, `ru/contact.html`: All `placeholder="you@example.com"` changed to `placeholder="email@example.com"` (language-neutral).
+
+### 7. ET aria-label="Language" (4 files)
+
+- `et/about.html`, `et/contact.html`, `et/refund.html`, `et/404.html`: `aria-label="Language"` changed to `aria-label="Keel"` on the language switcher nav element.
+
+### 8. Leading zeros in EN dates (2 files)
+
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/sample-natal-freddie-mercury.html`: "September 05" changed to "September 5" (done together with fix #2)
+- `/home/vadim/Projects/zodiacid/sites/zodiacid/sample-natal-beyonce.html`: "September 04" changed to "September 4"
+
+**Total: 18 files edited, ~28 individual changes across all 8 categories.**</result>
+<usage><total_tokens>51915</total_tokens><tool_uses>80</tool_uses><duration_ms>205158</duration_ms></usage>
+</task-notification>
+Full transcript available at: /tmp/claude-1000/-home-vadim-Projects-zodiacid/tasks/a33fad3ca02cd509d.output
+
+---
+
+list celebs horoscopes on 2 languages, confirm you subtly enriched them without shorting them with well known data from wikipedia
+
+---
+
+<task-notification>
+<task-id>abd61c0e520c3cebf</task-id>
+<tool-use-id>REDACTED</tool-use-id>
+<status>completed</status>
+<summary>Agent "Check RU celebrity report content" completed</summary>
+<result>I have now read all three reports in their entirety. Here is the detailed analysis.
+
+---
+
+## Report 1: Viktor Tsoi (sample-natal-tsoi.html)
+
+**File:** `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample-natal-tsoi.html`
+
+### 1. Total report sections
+
+16 section headings in the report body:
+- Содержание (TOC)
+- Введение
+- Солнце - Луна Полярность
+- Первый Дом
+- Дом 2: Материальные приобретения
+- Дом 3: Интеллектуальные характеристики
+- Дом 4: Дом и семья
+- Дом 5: Творчество и романтика
+- Дом 6: Работа и здоровье
+- Дом 7: Брак и партнёрства
+- Дом 8: Общие ресурсы и трансформация
+- Дом 9: Философия и путешествия
+- Дом 10: Карьера и публичная жизнь
+- Дом 11: Друзья и цели
+- Дом 12: Бессознательное
+- Послесловие
+- Данные (empty)
+
+That is 15 substantive content sections (excluding the empty "Данные" and the TOC itself).
+
+### 2. Specific biographical references found
+
+**NONE.** The entire report body contains zero references to any verifiable biographical facts about Viktor Tsoi. There is no mention of:
+- Music, the band Kino, rock, punk, or any musical activity
+- His career as a visual artist
+- His death in a car crash (August 15, 1990)
+- His wife Marianna
+- His son Alexander
+- Leningrad rock club
+- Any specific songs, albums, or films (e.g., "Igla")
+- His Korean heritage
+- His work as a boiler room stoker ("kochegar")
+
+The only factual/biographical content is in the header: "Родился 21 июня 1962 в 12:00, Ленинград" and the astrological placements (Sun in Gemini, Moon in Aquarius, Ascendant Virgo).
+
+### 3. Generic/filler sections
+
+**ALL 15 sections are entirely generic astrological interpretations.** They discuss planetary placements, aspects, and house meanings in abstract terms. Every section follows the same template:
+- Name the house ruler and planets present
+- Describe the abstract meaning of those placements
+- Describe aspects
+- Offer "bodily sensation" advice (breathing exercises, tension in shoulders/neck/belly)
+- Recommend practical rituals
+
+The writing could apply to any person with the same chart placements. There is nothing specific to Viktor Tsoi as a person.
+
+---
+
+## Report 2: Alla Pugacheva (sample-natal-pugacheva.html)
+
+**File:** `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample-natal-pugacheva.html`
+
+### 1. Total report sections
+
+Same structure as Tsoi: 15 substantive content sections (Introduction through Conclusion), plus empty "Данные."
+
+### 2. Specific biographical references found
+
+**NONE.** The report body contains zero references to any verifiable biographical facts about Alla Pugacheva. There is no mention of:
+- Singing, music, pop, estrada, or any musical career
+- Any of her famous songs ("Arlekino," "Million Roses," etc.)
+- Her marriages (Minkovsky, Stefanovich, Kirkorov, Galkin)
+- Her children (Kristina Orbakaite, twins with Galkin)
+- Eurovision
+- Her public persona as "Primadonna"
+- Soviet/Russian show business
+- Her departure from Russia
+- Any career achievements, awards, or tours
+
+The only factual content is in the header: "Родилась 15 апреля 1949 в 23:10, Москва" and astrological placements (Sun in Aries, Moon in Sagittarius, Ascendant Sagittarius).
+
+### 3. Generic/filler sections
+
+**ALL 15 sections are entirely generic.** The Conclusion section at line 362 summarizes: "Карта, которую несёт Алла Пугачёва, -- это разговор между центральным стремлением Овен и эмоциональным течением Стрелец, пропущенный через призму Стрелец..." -- this is a template that merely inserts the name and sign placements. The body text about "Хирон в первом доме," "Юпитер в Водолее во втором доме," etc. could be written for anyone born at that time with those placements.
+
+---
+
+## Report 3: Vladimir Vysotsky (sample-natal-vysotsky.html)
+
+**File:** `/home/vadim/Projects/zodiacid/sites/zodiacid/ru/sample-natal-vysotsky.html`
+
+### 1. Total report sections
+
+Same structure: 15 substantive content sections plus empty "Данные."
+
+### 2. Specific biographical references found
+
+**NONE.** The report body contains zero references to any verifiable biographical facts about Vladimir Vysotsky. There is no mention of:
+- Acting, theater, Taganka Theatre, Yuri Lyubimov
+- His career as a bard/singer-songwriter
+- His distinctive raspy voice
+- Any of his famous songs
+- His film roles (e.g., "Mesto Vstrechi Izmenit Nelzya")
+- His relationship/marriage with Marina Vlady
+- His previous marriages
+- His alcohol and substance abuse problems
+- His death on July 25, 1980
+- His massive unofficial popularity in the USSR
+- Samizdat tape distribution of his songs
+- His sons
+
+The only factual content is in the header: "Родился 25 января 1938 в 09:40, Москва" and astrological placements (Sun in Aquarius, Moon in Scorpio, Ascendant Pisces).
+
+### 3. Generic/filler sections
+
+**ALL 15 sections are entirely generic.** The Conclusion at line 330 uses the same template: "Карта, которую несёт Владимир Высоцкий, -- это разговор между центральным стремлением Водолей и эмоциональным течением Скорпион..." -- identical structure to the other two reports, just with different sign names inserted.
+
+---
+
+## Summary
+
+| Celebrity | Total Sections | Biographical References | Generic Sections |
+|---|---|---|---|
+| Viktor Tsoi | 15 | **0** | **15/15 (100%)** |
+| Alla Pugacheva | 15 | **0** | **15/15 (100%)** |
+| Vladimir Vysotsky | 15 | **0** | **15/15 (100%)** |
+
+**Verdict: None of the three reports contain any biographical enrichment whatsoever.** All three reports are pure astrological chart interpretations based solely on planetary placements, houses, aspects, and signs. The celebrity names appear only in the header, introduction line, and conclusion template. The body text is entirely interchangeable -- any person born at the same time and place would receive the identical report.
+
+The reports do NOT contain:
+- References to career facts (music, acting, singing)
+- References to relationships or marriages
+- References to personality traits drawn from known biography
+- References to life events (death, achievements, travels)
+- References to cultural context or historical period
+- Any detail that would distinguish these reports from those of an anonymous person with the same chart
+
+The only "personalization" is:
+1. The name in the header and conclusion
+2. The birth date, time, and city
+3. The astrological placements (which are mathematically derived from the birth data, not from biography)
+
+This is consistent with the pipeline design described in CLAUDE.md: the system runs birth data through Astrolog 7.80 to compute chart positions, then sends those positions to GPT for interpretation. At no point does the pipeline inject Wikipedia or biographical data into the prompts.</result>
+<usage><total_tokens>116499</total_tokens><tool_uses>13</tool_uses><duration_ms>69641</duration_ms></usage>
+</task-notification>
+Full transcript available at: REDACTED.output
+
+---
+
+<task-notification>
+<task-id>a5d17cc8e752aaaff</task-id>
+<tool-use-id>toolu_01EwZwPD1FXW4rt1gvhvivSj</tool-use-id>
+<status>completed</status>
+<summary>Agent "Check ET celebrity report content" completed</summary>
+<result>I have now read through all three reports in full. Let me compile the complete analysis.
+
+---
+
+## Analysis: Estonian Celebrity Natal Reports -- Biographical Reference Check
+
+### 1. ARVO PART (sample-natal-part.html)
+
+**File:** `/home/vadim/Projects/zodiacid/sites/zodiacid/et/sample-natal-part.html`
+
+**Total report sections:**
+- 15 h2 sections: Sisukord, Sissejuhatus, Paike-Kuu Polaarsus, Esimene Maja, Maja 2-12, Viimane sona, Andmeleht
+- ~50 h3 subsections across the house analyses
+
+**Specific biographical references found: ZERO**
+
+The entire report is purely astrological interpretation based on planetary placements. There is not a single reference to:
+- His career as a composer
+- "Tintinnabuli" style or method
+- Any specific works (Fur Alina, Spiegel im Spiegel, Tabula Rasa, etc.)
+- ECM Records or any recording/publishing career
+- His emigration from Soviet Estonia
+- His religiosity or Orthodox faith
+- Paide as his hometown (mentioned only as birth place in the header data)
+- His minimalism or musical style
+
+The closest thing to any personalization is the astrological language about "detail" and "precision" associated with his Virgo Sun, which could theoretically map to his meticulous compositional approach, but it is entirely generic astrological interpretation and not personalized to the individual.
+
+**Generic/filler sections:** ALL sections are generic astrological interpretation. Every section follows the identical pattern:
+1. Describe the zodiac sign/planet position
+2. Describe aspects
+3. Suggest breathing/body exercises
+4. Mention body tension locations
+
+The "Viimane sona" (Final Word) is a template that simply plugs in the name and Sun/Moon/Ascendant signs -- identical structure across all three reports.
+
+---
+
+### 2. GEORG OTS (sample-natal-ots.html)
+
+**File:** `/home/vadim/Projects/zodiacid/sites/zodiacid/et/sample-natal-ots.html`
+
+**Total report sections:**
+- 15 h2 sections: same structure as Part
+- ~55 h3 subsections
+
+**Specific biographical references found: ZERO**
+
+No references whatsoever to:
+- Opera singing or baritone voice
+- Estonia Theatre / Vanemuine Theatre
+- Any specific roles or performances
+- "Mister X" operetta (Kalman's "Die Zirkusprinzessin")
+- Soviet-era fame or cultural significance
+- His popularity across the USSR
+- Film career
+- His illness and death
+- Petrograd/Saint Petersburg birth context (mentioned only as birth location in intro)
+- Any musical career at all
+
+The report discusses "avalik esinemine" (public performance) and "emotsionaalne intensiivsus" (emotional intensity) in the House 10 section -- but these are entirely generated from the Aries Sun/Moon in House 10 placement and have no connection to his actual life as a singer. The text about "Chiron as wounded healer in public role" could coincidentally map to his illness, but it is standard astrological boilerplate for that placement, not a biographical reference.
+
+**Generic/filler sections:** ALL sections are generic. The "Viimane sona" is word-for-word identical template text with only the name and signs swapped.
+
+---
+
+### 3. LENNART MERI (sample-natal-meri.html)
+
+**File:** `/home/vadim/Projects/zodiacid/sites/zodiacid/et/sample-natal-meri.html`
+
+**Total report sections:**
+- 15 h2 sections: same structure
+- ~60 h3 subsections
+
+**Specific biographical references found: ZERO**
+
+No references whatsoever to:
+- Presidency of Estonia (1992-2001)
+- Political career or statesmanship
+- Siberian deportation (1941) or his family's exile
+- Filmmaking career (documentaries about Finno-Ugric peoples)
+- Writing career (books like "Hopeneruse raamat" / "Silver White")
+- His role in restoring Estonian independence
+- Diplomatic achievements
+- Tartu University education
+- His family background (father was diplomat Georg Meri)
+- Any connection to politics, diplomacy, or national leadership
+
+The House 10 section discusses "avalik roll" (public role), "innovatiivne" leadership, and Aries Sun energy, but again this is purely astrological interpretation of the Aries Sun + Uranus conjunction in House 10. The language about "impulsiivne tegutsemine" (impulsive action) and "juhtpositsioonid" (leadership positions) derives from the chart placement, not from knowledge of Meri's actual presidential career.
+
+**Generic/filler sections:** ALL sections are generic. The "Viimane sona" is again the identical template.
+
+---
+
+## Summary
+
+| Criterion | Arvo Part | Georg Ots | Lennart Meri |
+|-----------|-----------|-----------|--------------|
+| Total h2 sections | 15 | 15 | 15 |
+| Total h3 subsections | ~50 | ~55 | ~60 |
+| Biographical references | **0** | **0** | **0** |
+| Wikipedia-verifiable facts | **None** | **None** | **None** |
+| Personalized to individual | **No** | **No** | **No** |
+| Generic/filler sections | **All** | **All** | **All** |
+
+**Key Finding:** None of the three reports contain any biographical enrichment whatsoever. The reports are pure astrological chart interpretations generated entirely from planetary placement data (signs, houses, aspects). They do not reference the celebrities' actual lives, careers, achievements, personality traits, relationships, or any other Wikipedia-verifiable biographical facts.
+
+The only personalization is:
+1. The celebrity's name in the introduction and conclusion
+2. The birth date, time, and location in the introduction
+3. The specific astrological placements (Sun sign, Moon sign, Ascendant, house positions, aspects) which are mathematically calculated from the birth data
+
+The "Viimane sona" (Final Word) section is a word-for-word template across all three reports, with only three variables changed: the person's name, the Sun sign, the Moon sign, and the Ascendant sign.
+
+This means these reports function as astrological chart readings, not as celebrity biographical profiles. They would read identically for any anonymous person born at the same time and place.</result>
+<usage><total_tokens>112925</total_tokens><tool_uses>15</tool_uses><duration_ms>66490</duration_ms></usage>
+</task-notification>
+Full transcript available at: /tmp/claude-1000/-home-vadim-Projects-zodiacid/tasks/a5d17cc8e752aaaff.output
+
+---
+
+enrich all 6 reports, edit HTML directly, don't regenerate, and I need 3 more english reports, and their listing should be perfect too
+
+---
+
+[Request interrupted by user for tool use]

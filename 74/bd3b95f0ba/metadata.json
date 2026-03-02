@@ -3,7 +3,7 @@
   "checkpoint_id": "74bd3b95f0ba",
   "strategy": "manual-commit",
   "branch": "main",
-  "checkpoints_count": 6,
+  "checkpoints_count": 7,
   "files_touched": [
     "zodiacid/404.html",
     "zodiacid/_headers",
@@ -20,6 +20,8 @@
     "zodiacid/product-synastry.html",
     "zodiacid/refund.html",
     "zodiacid/robots.txt",
+    "zodiacid/ru/index.html",
+    "zodiacid/ru/product-natal.html",
     "zodiacid/sample-natal-beyonce.html",
     "zodiacid/sample-parenting-prince-george.html",
     "zodiacid/sample-redflag-pitt-jolie.html",
@@ -64,13 +66,20 @@
       "context": "/74/bd3b95f0ba/4/context.md",
       "content_hash": "/74/bd3b95f0ba/4/content_hash.txt",
       "prompt": "/74/bd3b95f0ba/4/prompt.txt"
+    },
+    {
+      "metadata": "/74/bd3b95f0ba/5/metadata.json",
+      "transcript": "/74/bd3b95f0ba/5/full.jsonl",
+      "context": "/74/bd3b95f0ba/5/context.md",
+      "content_hash": "/74/bd3b95f0ba/5/content_hash.txt",
+      "prompt": "/74/bd3b95f0ba/5/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 952,
-    "cache_creation_tokens": 662834,
-    "cache_read_tokens": 22505383,
-    "output_tokens": 77432,
-    "api_call_count": 261
+    "input_tokens": 1022,
+    "cache_creation_tokens": 859242,
+    "cache_read_tokens": 25729205,
+    "output_tokens": 103728,
+    "api_call_count": 305
   }
 }
