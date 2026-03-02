@@ -1,0 +1,31 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "74bd3b95f0ba",
+  "session_id": "4487b74b-568d-4f79-9aca-e875dc71ccd2",
+  "strategy": "manual-commit",
+  "created_at": "2026-03-02T09:56:23.76486296Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "zodiacid/_headers",
+    "zodiacid/robots.txt",
+    "zodiacid/sitemap.xml"
+  ],
+  "agent": "Claude Code",
+  "token_usage": {
+    "input_tokens": 42,
+    "cache_creation_tokens": 131313,
+    "cache_read_tokens": 3523776,
+    "output_tokens": 27086,
+    "api_call_count": 38
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-03-02T09:56:23.580625916Z",
+    "agent_lines": 424,
+    "human_added": 19507,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 19931,
+    "agent_percentage": 2.127339320656264
+  }
+}
