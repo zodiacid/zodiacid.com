@@ -96,6 +96,24 @@
     }, { passive: true });
   }
 
+  // ========== Dodo Payments ==========
+  var DODO_PRODUCTS = {
+    'natal/user_manual': 'pdt_0Nb1t7QRkPWBEZM4wg7Ev',
+    'synastry/synastry_full': 'pdt_0Nb1t7unbEcKZThuuV2Hc',
+    'parenting_guide': 'pdt_0Nb1t8WqwIJazzoaCKHbd'
+  };
+
+  function buildDodoCheckoutUrl(productId, email, name) {
+    var lang = document.documentElement.lang || 'en';
+    var thankYouPath = lang === 'en' ? '/thank-you.html' : '/' + lang + '/thank-you.html';
+    var redirectUrl = 'https://zodiacid.com' + thankYouPath;
+
+    return 'https://checkout.dodopayments.com/buy/' + productId +
+      '?redirect_url=' + encodeURIComponent(redirectUrl) +
+      '&email=' + encodeURIComponent(email) +
+      '&fullName=' + encodeURIComponent(name);
+  }
+
   // ========== Form Handling ==========
   function initForms() {
     document.querySelectorAll('.order-form form, .contact-form form').forEach(function (form) {
@@ -152,18 +170,28 @@
           .then(function (res) { return res.json(); })
           .then(function (data) {
             if (data.success) {
-              // Show success message
-              var formEl = form.closest('.order-form') || form.closest('.contact-form');
-              if (formEl) {
-                form.style.display = 'none';
-                var success = formEl.querySelector('.form-success');
-                if (success) success.style.display = 'block';
-              }
+              var product = formData.get('product');
+              var dodoId = product && DODO_PRODUCTS[product];
 
               trackEvent('form_submit', {
-                product: formData.get('product') || 'contact',
+                product: product || 'contact',
                 price: formData.get('price') || '0'
               });
+
+              if (dodoId) {
+                // Order form — redirect to Dodo checkout
+                var email = formData.get('email') || '';
+                var name = formData.get('name') || '';
+                window.location.href = buildDodoCheckoutUrl(dodoId, email, name);
+              } else {
+                // Contact form — show success message
+                var formEl = form.closest('.order-form') || form.closest('.contact-form');
+                if (formEl) {
+                  form.style.display = 'none';
+                  var success = formEl.querySelector('.form-success');
+                  if (success) success.style.display = 'block';
+                }
+              }
             } else {
               if (submitBtn) {
                 submitBtn.disabled = false;
