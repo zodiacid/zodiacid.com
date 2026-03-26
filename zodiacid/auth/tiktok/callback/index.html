@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZodiacID — TikTok Authorization</title>
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0f;
+            color: #e0d5c1;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            max-width: 520px;
+            padding: 40px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 1.4rem;
+            color: #c9a84c;
+            margin-bottom: 20px;
+        }
+        .status {
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .success {
+            background: rgba(34, 139, 34, 0.15);
+            border: 1px solid rgba(34, 139, 34, 0.3);
+        }
+        .error {
+            background: rgba(200, 50, 50, 0.15);
+            border: 1px solid rgba(200, 50, 50, 0.3);
+        }
+        .code-box {
+            background: #1a1a2e;
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 14px;
+            margin: 16px 0;
+            font-family: monospace;
+            font-size: 0.85rem;
+            word-break: break-all;
+            color: #c9a84c;
+            cursor: pointer;
+            position: relative;
+        }
+        .code-box:hover { background: #1e1e35; }
+        .copied {
+            position: absolute;
+            top: -28px;
+            right: 0;
+            font-size: 0.75rem;
+            color: #4caf50;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .copied.show { opacity: 1; }
+        .hint {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ZodiacID TikTok Auth</h1>
+        <div id="result"></div>
+    </div>
+    <script>
+        var params = new URLSearchParams(window.location.search);
+        var code = params.get('code');
+        var error = params.get('error');
+        var el = document.getElementById('result');
+
+        if (code) {
+            el.innerHTML =
+                '<div class="status success">' +
+                    'Authorization successful.' +
+                '</div>' +
+                '<div class="code-box" id="codebox" onclick="copyCode()">' +
+                    code +
+                    '<span class="copied" id="copied">Copied!</span>' +
+                '</div>' +
+                '<p class="hint">Click to copy. Paste this code into the terminal.</p>';
+        } else if (error) {
+            el.innerHTML =
+                '<div class="status error">' +
+                    'Authorization failed: ' + (params.get('error_description') || error) +
+                '</div>';
+        } else {
+            el.innerHTML =
+                '<div class="status error">' +
+                    'No authorization code received.' +
+                '</div>';
+        }
+
+        function copyCode() {
+            navigator.clipboard.writeText(code).then(function() {
+                var c = document.getElementById('copied');
+                c.classList.add('show');
+                setTimeout(function() { c.classList.remove('show'); }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
