@@ -21,12 +21,12 @@ const PRICE_RE =
 
 function toUsd(_match, pre, post) {
   const eur = parseFloat((pre || post).replace(',', '.'));
-  return '&#8776; $' + Math.round(eur * RATE); // e.g. "≈ $40"
+  return '$' + Math.round(eur * RATE); // e.g. "$40"
 }
 
 // Buffers each text node across streamed chunks, then replaces it once with
 // the converted text. html:true preserves surrounding entities (&mdash;,
-// &auml;, ...). Conversion is idempotent: "&#8776; $40" never re-matches.
+// &auml;, ...). Conversion is idempotent: "$40" never re-matches (no marker).
 class PriceHandler {
   constructor() {
     this.buffer = '';
